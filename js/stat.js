@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const CLOUD_WIDTH = 420;
 const CLOUD_HEIGHT = 270;
@@ -11,66 +11,67 @@ const TEXT_HEIGHT = 30;
 const BAR_WIDTH = 40;
 let barHeight = 150;
 
-let renderCloud = function(ctx, x, y, color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
+let renderCloud = function (ctx, x, y, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-let getMaxElement = function(arr) {
-    let maxElement = arr[0];
-    for (let i = 1; i < arr.length; i++) {
-      if (arr[i] > maxElement) {
-        maxElement = arr[i];
-      }
+let getMaxElement = function (arr) {
+  let maxElement = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > maxElement) {
+      maxElement = arr[i];
     }
-    return maxElement;
+  }
+  return maxElement;
 };
 
-window.renderStatistics = function(ctx, players, times) {
+window.renderStatistics = function (ctx, players, times) {
   renderCloud(
-    ctx,
-    CLOUD_X + SMALL_GAP,
-    CLOUD_Y + SMALL_GAP,
-    'rgba(0, 0, 0, 0.7)'
+      ctx,
+      CLOUD_X + SMALL_GAP, CLOUD_Y + SMALL_GAP,
+      `rgba(0, 0, 0, 0.7)`
   );
   renderCloud(
-    ctx,
-    CLOUD_X,
-    CLOUD_Y,
-    '#fff'
+      ctx,
+      CLOUD_X,
+      CLOUD_Y,
+      `#fff`
   );
-  ctx.fillStyle = '#000';
-  ctx.fillText('Ура, вы победили!', CLOUD_X + GAP, CLOUD_Y + TEXT_HEIGHT);
-  ctx.fillText('Список результатов:', CLOUD_X + GAP, CLOUD_Y + TEXT_HEIGHT + FONT_GAP);
- 
+  ctx.fillStyle = `#000`;
+  ctx.fillText(`Ура, вы победили!`, CLOUD_X + GAP, CLOUD_Y + TEXT_HEIGHT);
+  ctx.fillText(`Список результатов:`, CLOUD_X + GAP, CLOUD_Y + TEXT_HEIGHT + FONT_GAP);
+
   let maxTime = getMaxElement(times);
-  
+
   for (let i = 0; i < players.length; i++) {
+
     ctx.fillText(
-      Math.round(times[i]),
-      CLOUD_X + GAP + (BAR_WIDTH + GAP) * i,
-      CLOUD_Y + TEXT_HEIGHT * 2 + FONT_GAP + (barHeight - (barHeight * times[i]) / maxTime), 
-      );
-
-    //Попытка задать насыщенность колонок случайным образом.
-    let hslColor = Math.round(100 * Math.random() * Math.floor(100));
-    if (players[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else {
-      ctx.fillStyle = 'hsl(240, ${hslColor}%, 50%)';
-    };
-
-    ctx.fillRect(
-      CLOUD_X + GAP + (BAR_WIDTH + GAP) * i,
-      CLOUD_Y + TEXT_HEIGHT + FONT_GAP * 3 + (barHeight - (barHeight * times[i]) / maxTime), 
-      BAR_WIDTH,
-      (barHeight * times[i]) / maxTime,
+        Math.round(times[i]),
+        CLOUD_X + GAP + (BAR_WIDTH + GAP) * i,
+        CLOUD_Y + TEXT_HEIGHT * 2 + FONT_GAP + (barHeight - (barHeight * times[i]) / maxTime)
     );
-    ctx.fillStyle = '#000'; 
+    let getRandomNumber = function (min, max) {
+      return Math.random() * (max - min) + min;
+    };
+    let hslColor = getRandomNumber(0, 100);
+    if (players[i] === `Вы`) {
+      ctx.fillStyle = `rgba(255, 0, 0, 1)`;
+    } else {
+      ctx.fillStyle = `hsl(240, ${hslColor}%, 50%)`;
+    }
+    ctx.fillRect(
+        CLOUD_X + GAP + (BAR_WIDTH + GAP) * i,
+        CLOUD_Y + TEXT_HEIGHT + FONT_GAP * 3 + (barHeight - (barHeight * times[i]) / maxTime),
+        BAR_WIDTH,
+        (barHeight * times[i]) / maxTime
+    );
+    ctx.fillStyle = `#000`;
     ctx.fillText(
-      players[i],
-      CLOUD_X + GAP + (BAR_WIDTH + GAP) * i,
-      CLOUD_Y + TEXT_HEIGHT + FONT_GAP * 4 + barHeight, 
-      );
+        players[i],
+        CLOUD_X + GAP + (BAR_WIDTH + GAP) * i,
+        CLOUD_Y + TEXT_HEIGHT + FONT_GAP * 4 + barHeight
+    );
   }
 };
+
