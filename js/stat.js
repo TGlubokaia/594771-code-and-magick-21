@@ -52,7 +52,7 @@ window.renderStatistics = function (ctx, players, times) {
         CLOUD_Y + TEXT_HEIGHT * 2 + FONT_GAP + (barHeight - (barHeight * times[i]) / maxTime)
     );
     let getRandomNumber = function (min, max) {
-      return Math.random() * (max - min) + min;
+      return Math.floor(Math.random() * (max - min + 1) + min);
     };
     let hslColor = getRandomNumber(0, 100);
     if (players[i] === `Вы`) {
@@ -74,4 +74,3 @@ window.renderStatistics = function (ctx, players, times) {
     );
   }
 };
-
