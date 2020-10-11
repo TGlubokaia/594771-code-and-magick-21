@@ -16,34 +16,34 @@ let similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .querySelector('.setup-similar-item');
 
 let getRandomNumber = function (min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
+  return Math.floor(Math.random() * (max - min) + min);
 };
 
 let getPlayers = function (name, surname, color, eyes) {
-    for (let i = 0; i < numberOfPlayer; i++) {
-        let player = {};
-        player.name = name[getRandomNumber(0, name.length)];
-        player.surname = surname[getRandomNumber(0, surname.length)];
-        player.coatColor = color[getRandomNumber(0, color.length)];
-        player.eyesColor = eyes[getRandomNumber(0, eyes.length)];
-        players.push(player);
-    }
-    return players
-}
+  for (let i = 0; i < numberOfPlayer; i++) {
+    let player = {};
+    player.name = name[getRandomNumber(0, name.length)];
+    player.surname = surname[getRandomNumber(0, surname.length)];
+    player.coatColor = color[getRandomNumber(0, color.length)];
+    player.eyesColor = eyes[getRandomNumber(0, eyes.length)];
+    players.push(player);
+  }
+  return players;
+};
 getPlayers(NAMES, SURNAMES, COLOR, EYES);
 
-let renderWizard = function(wizard) {
-    let wizardElement = similarWizardTemplate.cloneNode(true);
-    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name + ' ' + wizard.surname;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.coatColor;
-    return wizardElement;
-}
-  
+let renderWizard = function (wizard) {
+  let wizardElement = similarWizardTemplate.cloneNode(true);
+  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name + ' ' + wizard.surname;
+  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.coatColor;
+  return wizardElement;
+};
+
 let fragment = document.createDocumentFragment();
-    for (let i = 0; i < players.length; i++) {
-        fragment.appendChild(renderWizard(players[i]));
-    }
+for (let i = 0; i < players.length; i++) {
+  fragment.appendChild(renderWizard(players[i]));
+}
 similarListElement.appendChild(fragment);
 
 document.querySelector('.setup-similar').classList.remove('hidden');
