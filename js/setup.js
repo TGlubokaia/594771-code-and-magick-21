@@ -13,7 +13,7 @@ const similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-  const getRandomNumber = function (min, max) {
+const getRandomNumber = function (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
