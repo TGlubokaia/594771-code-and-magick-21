@@ -12,16 +12,14 @@ const similarWizardTemplate = document.querySelector('#similar-wizard-template')
 const setup = document.querySelector('.setup');
 const setupOpen = document.querySelector('.setup-open');
 const setupClose = setup.querySelector('.setup-close');
-const setupIcon = setup.querySelector('.setup-open-icon');
 const setupInput = setup.querySelector('.setup-user-name');
-const setupWizard = document.querySelector('.setup-wizard'); 
+const setupWizard = document.querySelector('.setup-wizard');
 const setupWizardCoat = setupWizard.querySelector('.wizard-coat');
 const setupWizardEyes = setupWizard.querySelector('.wizard-eyes');
 const setupWizardFireball = document.querySelector('.setup-fireball-wrap');
 const wizardFireballColors = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 const coatInput = document.querySelector('.coat-color');
 const eyesInput = document.querySelector('.eyes-color');
-
 
 
 const getRandomNumber = function (min, max) {
@@ -79,20 +77,18 @@ const getSetupClose = function () {
 };
 
 
-
-
 const getColor = function (color, element, box) {
-  const colorElement = color[getRandomNumber(0, color.length)]
+  const colorElement = color[getRandomNumber(0, color.length)];
   element.style.fill = colorElement;
-  box.value  = colorElement;
+  box.value = colorElement;
 };
 
 
-setupWizardCoat.addEventListener ('click', function () {
+setupWizardCoat.addEventListener('click', function () {
   getColor(wizardCoatColors, setupWizardCoat, coatInput);
 });
 
-setupWizardEyes.addEventListener ('click', function () {
+setupWizardEyes.addEventListener('click', function () {
   getColor(wizardEyes, setupWizardEyes, eyesInput);
 });
 
@@ -101,13 +97,12 @@ const getBGColor = function (color, element) {
   element.style.background = color[getRandomNumber(0, color.length)];
 };
 
-setupWizardFireball.addEventListener ('click', function () {
+setupWizardFireball.addEventListener('click', function () {
   getBGColor(wizardFireballColors, setupWizardFireball);
 });
 
 
-
-setupOpen.addEventListener ('click', function () {
+setupOpen.addEventListener('click', function () {
   getSetupOpen();
 });
 
@@ -117,11 +112,11 @@ setupOpen.addEventListener('keydown', function (evt) {
   }
 });
 
-setupClose.addEventListener ('click', function () {
+setupClose.addEventListener('click', function () {
   getSetupClose();
 });
 
-setupClose.addEventListener ('keydown', function (evt) {
+setupClose.addEventListener('keydown', function (evt) {
   if (evt.key === 'Enter') {
     getSetupClose();
   }
