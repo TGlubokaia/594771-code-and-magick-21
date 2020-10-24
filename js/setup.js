@@ -18,8 +18,9 @@ const setupWizardCoat = setupWizard.querySelector('.wizard-coat');
 const setupWizardEyes = setupWizard.querySelector('.wizard-eyes');
 const setupWizardFireball = document.querySelector('.setup-fireball-wrap');
 const wizardFireballColors = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
-const coatInput = document.querySelector('.coat-color');
-const eyesInput = document.querySelector('.eyes-color');
+const coatInput = document.querySelector('input[name=coat-color]');
+const eyesInput = document.querySelector('input[name=eyes-color]');
+const fireballInput = document.querySelector('input[name=fireball-color]');
 
 
 const getRandomNumber = function (min, max) {
@@ -93,12 +94,14 @@ setupWizardEyes.addEventListener('click', function () {
 });
 
 
-const getBGColor = function (color, element) {
-  element.style.background = color[getRandomNumber(0, color.length)];
+const getBGColor = function (color, element, box) {
+  const bgColor = color[getRandomNumber(0, color.length)];
+  element.style.background = bgColor;
+  box.value = bgColor;
 };
 
 setupWizardFireball.addEventListener('click', function () {
-  getBGColor(wizardFireballColors, setupWizardFireball);
+  getBGColor(wizardFireballColors, setupWizardFireball, fireballInput);
 });
 
 
