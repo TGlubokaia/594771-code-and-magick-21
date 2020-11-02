@@ -7,12 +7,13 @@
 
   const getColor = function (colors, element, box) {
     element.addEventListener('click', function () {
-      const colorElement = [window.util.getRandomNumber(0, colors.length - 1)];
+      const colorElement = colors[window.util.getRandomNumber(0, colors.length - 1)];
       box.value = colorElement;
       if (element.tagName.toLowerCase() === 'div') {
-        element.style.fill = colorElement;
+        console.log('true');
+        element.style.backgroundColor = colorElement;
       } else {
-        element.style.background = colorElement;
+        element.style.fill = colorElement;
       }
     });
   };
