@@ -10,7 +10,6 @@
       const colorElement = colors[window.util.getRandomNumber(0, colors.length - 1)];
       box.value = colorElement;
       if (element.tagName.toLowerCase() === 'div') {
-        console.log('true');
         element.style.backgroundColor = colorElement;
       } else {
         element.style.fill = colorElement;
